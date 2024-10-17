@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpage Expatearis</title>
+
+    <!-- My Own Styles -->
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+        /* CSS untuk tampilan ID Card */
+        .id-card {
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            padding: 15px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .id-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .id-card h2 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .id-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+    </style>
+    <script defer src="assets/scripts/script.js"></script>
+</head>
+<body>
+<header>
+    <div class="judul">
+        <h1 class="animasi">Expatearis</h1>
+        <p class="core">Student Science II Leader Inspirative Humoris</p>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html#About">About</a></li>
+            <li class="dropdown">
+                <a href="#memories" class="dropbtn">Memories</a>
+                <ul class="dropdown-content">
+                    <li><a href="index.html#school event">School</a></li>
+                    <li><a href="index.html#others">Other</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#Social" class="dropbtn">Social</a>
+                <ul class="dropdown-content">
+                    <li>
+                        <a href="https://www.instagram.com/expatearis?igsh=cGFhdjM2cjk4bjU4" target="_blank">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tiktok.com/@expatearis?_t=8q7xdo5NkFU&_r=1" target="_blank">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://open.spotify.com/user/31qb4t3ds2pnecznjrsvlnngsfj4?si=UCb03kSLQ0Ogkm_eqBZyNA" target="_blank">
+                            <i class="fab fa-spotify"></i> Spotify
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="datasiswa.html">Member</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <!-- Tempat untuk menampilkan ID card -->
+        <div class="container" id="idCardContainer"></div>
+    </section>
+</main>
+
+<footer>
+    <p class="watermark">Copyright © 2024 | Expatearis</p>
+    <p class="watermark-cr">All Rights Reserved | by Pann</p>
+</footer>
+
+<!-- Script untuk menampilkan data siswa dari JSON -->
+<script>
+    // Fetch data from JSON file
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('idCardContainer');
+            // Loop through the data to create ID cards
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('id-card');
+
+                card.innerHTML = `
+                    <img src="${item.path}" alt="Foto ${item.nama}">
+                    <h2>${item.nama}</h2>
+                    <p>${item.jabatan}</p>
+                `;
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error loading JSON data:', error));
+</script>
+
+</body>
+</html>
